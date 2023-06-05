@@ -17,33 +17,39 @@ public class WorkerPrimo extends Thread {
 
     @Override
     public void run() {
-        Integer num = null;
+        long num = 0;
 
         while (existeTrabalho || !tarefas.isEmpty()) {
-            num = null;
+            num = 0;
+
+            if (tarefas.isEmpty() && WorkerLeitura.readDone) {
+                System.out.println("entrou aqui");
+                System.out.println(tarefas.isEmpty());
+                termina();
+            }
+
             synchronized (chaveTarefas) {
                 if (!tarefas.isEmpty()) {
-                    //"peguei" o num da primeira posicao
                     num = tarefas.remove(0);
 
                 }
             }
 
-            if (num != null && isPrime(num)) {
+
+            if (num != 0 && isPrime(num)) {
                 greaterPrime = greaterPrime < num ? num : greaterPrime;
+
+                System.out.println(greaterPrime);
             }
-            
-            if(num == null && existeTrabalho) {
-                /*deve ocorrer a modificação do status da thread
-                    para "aguandado" novas tarefas
-                 */
+
+            if(num == 0 && existeTrabalho) {
                 aguarde();
             }
         }
     }
 
 
-    private static boolean isPrime(int num){
+    private static boolean isPrime(long num){
         if ( num > 2 && num%2 == 0 ) {
             return false;
         }
@@ -87,7 +93,7 @@ public class WorkerPrimo extends Thread {
     
     public static void termina(){
         existeTrabalho = false;
-        acordaThreads();
+        // acordaThreads();
     }
 
 }

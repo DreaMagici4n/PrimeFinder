@@ -13,7 +13,8 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 
 public class WorkerLeitura extends Thread{
-    
+    public static boolean readDone = false;
+
     public WorkerLeitura () {
         
     }
@@ -97,6 +98,8 @@ public class WorkerLeitura extends Thread{
                 }
                 
             }
+            System.out.println("cabo de ler");
+            readDone = true;
         }
     }
 
