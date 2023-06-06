@@ -84,6 +84,8 @@ public class WorkerLeitura extends Thread{
                                         }
                                     }
                                 }
+
+                                WorkerPrimo.acordaThreads();
                                 
                             }while(linha != null);
                             

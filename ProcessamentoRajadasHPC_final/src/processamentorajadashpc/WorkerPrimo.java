@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class WorkerPrimo extends Thread {
 
-    private static ArrayList<Integer> tarefas = new ArrayList<>();
+    private static ArrayList<Long> tarefas = new ArrayList<>();
     private static Object chaveTarefas = new Object();
     private static Object chaveRecurso = new Object();
     private static boolean existeTrabalho = true;
@@ -35,11 +35,10 @@ public class WorkerPrimo extends Thread {
                 }
             }
 
-
             if (num != 0 && isPrime(num)) {
                 greaterPrime = greaterPrime < num ? num : greaterPrime;
 
-                System.out.println(greaterPrime);
+                // System.out.println(greaterPrime);
             }
 
             if(num == 0 && existeTrabalho) {
@@ -79,13 +78,14 @@ public class WorkerPrimo extends Thread {
         }
     }
 
-    public static void addTarefa(int novoValor) {
+    public static void addTarefa(long novoValor) {
         synchronized (chaveTarefas) {
             tarefas.add(novoValor);
         }
     }
     
     public static void acordaThreads(){
+        System.out.println("entrou");
         synchronized (chaveRecurso) {
             chaveRecurso.notifyAll();
         }

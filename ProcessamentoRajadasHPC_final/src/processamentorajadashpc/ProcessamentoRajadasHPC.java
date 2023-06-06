@@ -10,25 +10,25 @@ public class ProcessamentoRajadasHPC {
 
     public static void main(String[] args) {
 
-        WorkerLeitura threadLeitura = new WorkerLeitura();
+        // WorkerLeitura threadLeitura = new WorkerLeitura();
         WorkerPrimo threads[] = 
             new WorkerPrimo[Runtime.getRuntime().
-                    availableProcessors() - 1];
+                    availableProcessors()];
         
         //insta. e executa as threads
 
-        threadLeitura.start();
-
-        try {
-            threadLeitura.join();
-        } catch (InterruptedException ex) {
-            System.err.println("WorkerLeitura thread interrupted");
-        }
+        // threadLeitura.start();
 
         for(int i = 1; i < threads.length;i++){
             threads[i] = new WorkerPrimo();
             threads[i].start();
         }
+
+        WorkerPrimo.addTarefa(1920912);
+        WorkerPrimo.addTarefa(3);
+        WorkerPrimo.addTarefa(29);
+
+        WorkerPrimo.acordaThreads();
 
 
         for(WorkerPrimo w : threads){
