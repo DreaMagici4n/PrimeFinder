@@ -79,7 +79,7 @@ public class WorkerLeitura extends Thread{
                                         }
 
                                         if(!number.isEmpty()){
-                                            WorkerPrimo.addTarefa(Integer.parseInt(number));
+                                            WorkerPrimo.addTarefa(Long.parseLong(number));
                                             WorkerPrimo.acordaThreads();
                                         }
                                     }
@@ -99,6 +99,7 @@ public class WorkerLeitura extends Thread{
                 
             }
             System.out.println("cabo de ler");
+            WorkerPrimo.acordaThreads();
             readDone = true;
         }
     }
