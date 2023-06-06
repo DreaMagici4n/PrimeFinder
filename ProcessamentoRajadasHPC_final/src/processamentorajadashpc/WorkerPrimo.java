@@ -22,6 +22,10 @@ public class WorkerPrimo extends Thread {
         while (existeTrabalho || !tarefas.isEmpty()) {
             num = 0;
 
+            if(num > greaterPrime){
+                System.out.println(num);
+            }
+            
             if (tarefas.isEmpty() && WorkerLeitura.readDone) {
                 System.out.println("entrou aqui");
                 System.out.println(tarefas.isEmpty());
@@ -61,7 +65,7 @@ public class WorkerPrimo extends Thread {
         return true; 
     }
 
-    public static void setGreaterPrime (int num) {
+    public static void setGreaterPrime (long num) {
         if(isPrime(num)) {
             greaterPrime = greaterPrime < num ? num : greaterPrime;
         }
