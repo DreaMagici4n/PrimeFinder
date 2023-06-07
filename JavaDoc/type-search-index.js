@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"PrimeFinder","l":"PrimeFinder"},{"p":"PrimeFinder","l":"WorkerLeitura"},{"p":"PrimeFinder","l":"WorkerPath"},{"p":"PrimeFinder","l":"WorkerPrimo"}];updateSearchResults();

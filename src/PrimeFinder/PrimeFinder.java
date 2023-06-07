@@ -1,7 +1,17 @@
+package PrimeFinder;
+/**
+ * Essa classe executa todos os processos do codigo.
+ */
+public class PrimeFinder {
 
-package processamentorajadashpc;
-
-public class ProcessamentoRajadasHPC {
+    /**
+     * O metodo main cria instancias da classe WorkerPrimo, WorkerPath e WorkerLeitura. 
+     * Inicia uma Thread somente para a instacia da classe WorkerLeitura, e o restante das Threads são destinadas as instacias da class WorkerPrimo. 
+     * Apos a execucão das Threads é printado e o maior numero encontrado, o seu caminho absoluto e o tempo gasto na execucão.
+     * 
+     * @param args StringArray
+     * @return void
+     */
     public static void main(String[] args) {
 
         WorkerLeitura threadLeitura = new WorkerLeitura();
@@ -30,6 +40,6 @@ public class ProcessamentoRajadasHPC {
 
         long endTime = System.currentTimeMillis();
         long executionTime = endTime - startTime;
-        System.out.println("Tempo de execução: " + executionTime + " milissegundos");
+        System.out.println("Tempo de execuçao: " + executionTime + " milissegundos");
     }
 }

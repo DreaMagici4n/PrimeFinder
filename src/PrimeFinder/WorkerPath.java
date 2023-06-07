@@ -1,5 +1,4 @@
-package processamentorajadashpc;
-
+package PrimeFinder;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -7,14 +6,24 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayDeque;
 
+/**
+ * Essa classe busca pelo caminho do maior numero primo encontrado.
+ */
 public class WorkerPath {
     private static File pastaInicial = WorkerLeitura.pastaInicial;
     private static String greaterPrime = String.valueOf(WorkerPrimo.greaterPrime);
 
+    /**
+     * Metodo construtor da classe WorkerPath da instacia WorkerPath
+     */
     public WorkerPath() {
 
     }
 
+    /**
+     * Esse metodo encontra e retorna o caminho do maior primo encontrado.
+     * @return String
+     */
     public static String getGreaterPrimePath() {
         ArrayDeque<File> explorar = new ArrayDeque<>();
 
@@ -56,7 +65,6 @@ public class WorkerPath {
 
                 }
             }
-
         }
         return "";
     }

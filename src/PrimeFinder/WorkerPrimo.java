@@ -1,10 +1,11 @@
-package processamentorajadashpc;
-
+package PrimeFinder;
 import java.util.ArrayList;
 
 /**
-* Essa classe é responsável por verificar se os números são primos. Essa classe extende a classe Thread.
-*/
+ * Essa classe é responsável por verificar se os números são primos. Essa classe
+ * extende a classe Thread.
+ * @param greaterPrime é o metodo que armazena o maior numero
+ */
 public class WorkerPrimo extends Thread {
 
     private static ArrayList<Long> tarefas = new ArrayList<>();
@@ -13,11 +14,19 @@ public class WorkerPrimo extends Thread {
     private static boolean existeTrabalho = true;
     public static long greaterPrime;
 
+    /**
+     * Metodo construtor da classe WorkerPrimo
+     * 
+     */
     public WorkerPrimo() {
 
     }
 
     @Override
+    /**
+     * Metodo que define o que será executado em cada Thread da instacia WorkerPrimo
+     * @return void
+     */
     public void run() {
         long num = 0;
 
@@ -42,7 +51,8 @@ public class WorkerPrimo extends Thread {
 
     /**
      * Esse metodo verica se o numero e primo.
-     * @param num
+     * 
+     * @param num numero do tipo long
      * @return bool
      */
     private static boolean isPrime(long num) {
@@ -60,7 +70,9 @@ public class WorkerPrimo extends Thread {
 
     /**
      * Esse metodo verifica se numero primo e o maior numero primo encontrado
-     * @param num
+     * 
+     * @param num numero do tipo long
+     * @return void
      */
     public static void setGreaterPrime(long num) {
         if (isPrime(num)) {
@@ -70,6 +82,7 @@ public class WorkerPrimo extends Thread {
 
     /**
      * Esse metodo faz com a threads entrem em estado de espera.
+     * @return void
      */
     public void aguarde() {
         synchronized (chaveRecurso) {
@@ -83,7 +96,9 @@ public class WorkerPrimo extends Thread {
 
     /**
      * Adiciona @param novoValor no array de tarefas.
-     * @param novoValor
+     * 
+     * @param novoValor numero do tipo long
+     * @return void
      */
     public static void addTarefa(long novoValor) {
         synchronized (chaveTarefas) {
@@ -93,6 +108,7 @@ public class WorkerPrimo extends Thread {
 
     /**
      * Esse metodo tira todos as threads do estado de espera.
+     * @return void
      */
     public static void acordaThreads() {
         synchronized (chaveRecurso) {
@@ -101,7 +117,9 @@ public class WorkerPrimo extends Thread {
     }
 
     /**
-     * Esse metodo muda a variavel existeTrabalho para "false", e chama o metodo acordaThreads.
+     * Esse metodo muda a variavel existeTrabalho para "false", e chama o metodo
+     * acordaThreads.
+     * @return void
      */
     public static void termina() {
         existeTrabalho = false;

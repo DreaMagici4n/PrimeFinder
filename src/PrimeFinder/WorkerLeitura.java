@@ -1,5 +1,4 @@
-package processamentorajadashpc;
-
+package PrimeFinder;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,12 +9,23 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 
+/**
+ * Essa classe e responsavel por procuarar os arquivos.txt e fazer uma varredura no seu conteudo separando todos os digitos encotrados.
+ * Ao encontrar os numeros, adiciona as tarefas da classe WorkerPrimo e muda o estado das threads das instancias WorkerPrimo com o metodo acordaThreads().
+ */
 public class WorkerLeitura extends Thread {
     public static File pastaInicial;
 
+    /**
+     * Metodo construtor da classe WorkerLeitura
+     */
     public WorkerLeitura() {
     }
 
+    /**
+     * Metodo que define o que será executado em cada Thread da instacia WorkerLeitura
+     * @return void
+     */
     @Override
     public void run() {
         pastaInicial = selecionaDiretorioRaiz();
@@ -81,6 +91,10 @@ public class WorkerLeitura extends Thread {
         }
     }
 
+    /**
+     * Esse metodo seleciona um diretorio para iniciar a busca por arquivos.txt.
+     * @return File
+     */
     public static File selecionaDiretorioRaiz() {
         JFileChooser janelaSelecao = new JFileChooser(".");
 
