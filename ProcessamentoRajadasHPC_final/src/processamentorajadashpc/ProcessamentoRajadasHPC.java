@@ -14,6 +14,8 @@ public class ProcessamentoRajadasHPC {
 
         threadLeitura.start();
 
+        long startTime = System.currentTimeMillis();
+
         for (WorkerPrimo w : threads) {
             if (w != null) {
                 try {
@@ -23,8 +25,11 @@ public class ProcessamentoRajadasHPC {
                 }
             }
         }
+        System.out.println("Maior numero primo encontrado: " + WorkerPrimo.greaterPrime + "\n" + "Path: "
+                + WorkerPath.getGreaterPrimePath());
 
-        System.out.println("Maior numero primo encontrado: " + WorkerPrimo.greaterPrime);
+        long endTime = System.currentTimeMillis();
+        long executionTime = endTime - startTime;
+        System.out.println("Tempo de execução: " + executionTime + " milissegundos");
     }
-
 }

@@ -11,12 +11,14 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 
 public class WorkerLeitura extends Thread {
+    public static File pastaInicial;
+
     public WorkerLeitura() {
     }
 
     @Override
     public void run() {
-        File pastaInicial = selecionaDiretorioRaiz();
+        pastaInicial = selecionaDiretorioRaiz();
         if (pastaInicial == null) {
             JOptionPane.showMessageDialog(null, "Você deve selecionar uma pasta para o processamento",
                     "Selecione o arquivo", JOptionPane.WARNING_MESSAGE);
@@ -75,7 +77,6 @@ public class WorkerLeitura extends Thread {
                 }
 
             }
-            System.out.println("cabo de ler");
             WorkerPrimo.termina();
         }
     }

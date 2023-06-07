@@ -2,6 +2,9 @@ package processamentorajadashpc;
 
 import java.util.ArrayList;
 
+/**
+* Essa classe é responsável por verificar se os números são primos. Essa classe extende a classe Thread.
+*/
 public class WorkerPrimo extends Thread {
 
     private static ArrayList<Long> tarefas = new ArrayList<>();
@@ -36,6 +39,7 @@ public class WorkerPrimo extends Thread {
             }
         }
     }
+
     /**
      * Esse metodo verica se o numero e primo.
      * @param num
@@ -55,7 +59,7 @@ public class WorkerPrimo extends Thread {
     }
 
     /**
-     * Esse metodo verifica se o numero
+     * Esse metodo verifica se numero primo e o maior numero primo encontrado
      * @param num
      */
     public static void setGreaterPrime(long num) {
@@ -64,6 +68,9 @@ public class WorkerPrimo extends Thread {
         }
     }
 
+    /**
+     * Esse metodo faz com a threads entrem em estado de espera.
+     */
     public void aguarde() {
         synchronized (chaveRecurso) {
             try {
@@ -74,18 +81,28 @@ public class WorkerPrimo extends Thread {
         }
     }
 
+    /**
+     * Adiciona @param novoValor no array de tarefas.
+     * @param novoValor
+     */
     public static void addTarefa(long novoValor) {
         synchronized (chaveTarefas) {
             tarefas.add(novoValor);
         }
     }
 
+    /**
+     * Esse metodo tira todos as threads do estado de espera.
+     */
     public static void acordaThreads() {
         synchronized (chaveRecurso) {
             chaveRecurso.notifyAll();
         }
     }
 
+    /**
+     * Esse metodo muda a variavel existeTrabalho para "false", e chama o metodo acordaThreads.
+     */
     public static void termina() {
         existeTrabalho = false;
         acordaThreads();
